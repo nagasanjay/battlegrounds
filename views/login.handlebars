@@ -1,0 +1,468 @@
+<html>
+  <head>
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+      <link rel="stylesheet" type="text/css" href="csshake.min.css">
+<!-- or from surge.sh -->
+<link rel="stylesheet" type="text/css" href="https://csshake.surge.sh/csshake.min.css">
+
+	
+
+<style>
+  @media only screen and (max-width: 600px) {
+  button.loginBtn {
+    font-size: 30px;
+  }
+}
+.loginBtn {
+  box-sizing: border-box;
+  position: relative;
+  /* width: 13em;  - apply for fixed size */
+  width: 40%;
+  height: 15%;
+  padding: 13px 13px 13px 56px;
+  border: none;
+  text-align: center;
+  line-height: 100%;
+  white-space: nowrap;
+  border-radius: 0.2em;
+  font-size: 26px;
+  color: #FFF;
+  cursor: pointer;
+}
+.loginBtn:before {
+  content: "";
+  box-sizing: border-box;
+  position: absolute;
+  top: 2.5px;
+  left: 5px;
+  right: 1px;
+  width: 54px;
+  height: 100%;
+  margin-top: 10px;
+}
+.loginBtn:focus {
+  outline: none;
+}
+.loginBtn:active {
+  box-shadow: inset 0 0 0 32px rgba(0,0,0,0.1);
+}
+/* Google */
+.loginBtn--google {
+  /*font-family: "Roboto", Roboto, arial, sans-serif;*/
+  background: #DD4B39;
+}
+.loginBtn--google:before {
+  border-right: #BB3F30 1px solid;
+  background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/14082/icon_google.png') 6px 6px no-repeat;
+}
+.loginBtn--google:hover,
+.loginBtn--google:focus {
+  background: #E74B37;
+}
+
+  /* Fonts */
+@import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css");
+@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+/* Wrapper & Utilities */
+.wrapper-login {
+
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity:10;
+}
+/* Objects */
+.box-container {
+  width: 64px;
+  height: 64px;
+  border-radius: 10px;
+  background:rgba(0, 0, 0, 0.0001);
+  box-shadow: 0 0 20px 0 rgba(233, 233, 47, 0.7), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  -webkit-animation: in ease 1s forwards;
+          animation: in ease 1s forwards;
+}
+.plane {
+  font-size: 25px;
+  background:rgba(255,255,204,0.2)
+  transition: all 1s ease;
+  opacity: 1;
+}
+/* Form Style */
+.form {
+  padding: 50px;
+  display: none;
+}
+.form input {
+  font-family: "Roboto", sans-serif;
+  outline: 0;
+  background: #d8cece8c;
+  width: 20%;
+  border: 0;
+  margin: 0 0 5px;
+  padding: 10px;
+  box-sizing: border-box;
+  font-size: 14px;
+  display: none;
+   border: 2px solid #111;
+}
+.button {
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  width: 100%;
+  border: 0;
+  padding: 15px;
+  color: #FFFFFF;
+  font-size: 14px;
+  transition: all 0.3 ease;
+  cursor: pointer;
+  display: none;
+}
+::-webkit-input-placeholder {
+  font: 300 1em/1.5 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+  color: rgba(17, 17, 17, 0.616);
+   font-weight: 800;
+  font-size: .8em;
+}
+.button:hover, .form button:active, .form button:focus {
+ 
+}
+/* Animation Classes*/
+.active {
+  cursor: default;
+  -webkit-animation: open 1.5s ease forwards;
+          animation: open 1.5s ease forwards;
+}
+
+/* Animation Keyframes */
+@-webkit-keyframes open {
+  0% {
+    width: 64px;
+    height: 64px;
+  }
+  50% {
+    width: 320px;
+    height: 64px;
+  }
+  100% {
+    width: 700px;
+    height: 550px;
+  }
+}
+@keyframes open {
+  0% {
+    width: 64px;
+    height: 64px;
+  }
+  50% {
+    width: 320px;
+    height: 64px;
+  }
+  100% {
+    width: 700px;
+    height: 550px;
+  }
+}
+@-webkit-keyframes in {
+  0% {
+    -webkit-transform: translateY(-500px);
+            transform: translateY(-500px);
+  }
+  60% {
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+  }
+  80% {
+    -webkit-transform: translateY(-10px);
+            transform: translateY(-10px);
+  }
+  100% {
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+  }
+}
+@keyframes in {
+  0% {
+    -webkit-transform: translateY(-500px);
+            transform: translateY(-500px);
+  }
+  60% {
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+  }
+  80% {
+    -webkit-transform: translateY(-10px);
+            transform: translateY(-10px);
+  }
+  100% {
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+  }
+}
+/*button*/
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,800);
+*, *:before, *:after{
+  box-sizing: border-box;
+  padding: 0; margin: 0;
+  font: 300 1em/1.5 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+  text-decoration: none;
+  color: #111;
+}
+html, body{background-image:url("back.png");
+  color: #eee;}
+  section.container{
+    min-width: 500px;
+    margin: 20px;
+    text-align: center;
+  }
+    a:hover{border-bottom: 1px solid #111;} 
+    h1{font-size: 2em; padding: 20px 0;}
+    p{
+      font-size: .75em;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      padding: 20px 0;
+    }
+    button:hover{cursor: pointer}
+    button {
+      background: transparent; outline: none;
+      position: relative;
+      border: 2px solid #111;
+      padding: 15px 50px;
+      overflow: hidden;
+    }
+    /*button:before (attr data-hover)*/
+    button:hover:before{opacity: 1; -webkit-transform: translate(0,0); transform: translate(0,0);}
+    button:before{
+      content: attr(data-hover);
+      position: absolute;
+      top: 1.1em; left: 0;
+      width: 100%;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      font-weight: 800;
+      font-size: .8em;
+      opacity: 0;
+      -webkit-transform: translate(-100%,0);
+              transform: translate(-100%,0);
+      transition: all .3s ease-in-out;
+    }
+      /*button div (button text before hover)*/
+      button:hover div{opacity: 0; -webkit-transform: translate(100%,0); transform: translate(100%,0)}
+      button div{
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        font-weight: 800;
+        font-size: .8em;
+        transition: all .3s ease-in-out;
+      }
+/**********************BIOS MENUUUUUUUUUUUUUUU***************/
+@font-face {
+  font-family: 'DOS';
+  font-style: normal;
+  font-weight: normal;
+  font-smooth: never;
+  src: url("https://rawgit.com/kristopolous/BOOTSTRA.386/master/v2.3.1/fonts/Fixedsys500c.eot");
+  src: url("https://rawgit.com/kristopolous/BOOTSTRA.386/master/v2.3.1/fonts/Fixedsys500c.woff") format("woff"), url("https://rawgit.com/kristopolous/BOOTSTRA.386/master/v2.3.1/fonts/Fixedsys500c.ttf") format("truetype"), url("https://rawgit.com/kristopolous/BOOTSTRA.386/master/v2.3.1/fonts/Fixedsys500c.svg") format("svg");
+}
+nav {
+  background-color: #4224F3;
+  width: 80%;
+  max-width: 480px;
+  margin: 100px fixed 0;
+  margin-left: 360px;
+  box-shadow: 20px 20px black;
+  padding: 15px;
+  position: relative;
+}
+h1 {
+  position: absolute;
+  color: white;
+  font-size: 20px;
+  font-weight: normal;
+  background: #4224F3;
+  top: -5px;
+  padding: 0 10px;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  display: inline;
+  white-space: nowrap;
+}
+h1::after, h1::before {
+  content: ' ***** ';
+}
+@media (max-width: 400px) {
+  h1::after, h1::before {
+    content: ' *** ';
+  }
+}
+ul {
+  list-style: none;
+  border: double 4px white;
+  margin: 0;
+  padding: 15px;
+}
+li:hover {
+  background-color: #34C0F9;
+}
+a {
+  text-decoration: none;
+  color: white;
+  font-size: 18px;  
+  display: block;
+  padding: 6px 0 6px 6px;
+}
+a:hover {
+  color: #4224F3;
+}
+a:focus {
+  color: yellow;
+}
+ @font-face {
+  font-family: 'MyWebFont';
+  font-color:white;
+  src:url('font2.otf') format('opentype'); /* Chrome 4+, Firefox 3.5, Opera 10+, Safari 3—5 */
+} 
+
+</style>
+  </head>
+  <body>
+<div class="wrapper-login">
+    <div class="box-container">
+      <div class="shake-slow shake-constant shake-constant--hover"><div class="plane">
+      
+<img src="army.png" width="60" height="50" />
+      </div>
+      </div>
+      <div class="form">
+        <center><div style="font-family:'MyWebFont';color:white;font-size:50px;">BATTLEGROUNDS</div></center>
+    <a data-toggle="collapse" href="#local-sign-in" id="log" role="button"><section class="container">
+  <button data-hover="Fire in the Hole!" style="background-color: rgba(216, 147, 83, 0.582)"><div>&emsp;&emsp;Login&emsp;&emsp;</div></button>
+</section></a>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('#reg').click(function(){
+          $('#reg').hide();
+          $('#log').show();
+          $('#local-sign-in').hide();
+          $('#local-reg').show();
+        });
+      });
+    </script>
+        <script type="text/javascript">
+      $(document).ready(function(){
+        $('#log').click(function(){
+          $('#log').hide();
+          $('#reg').show();
+          $('#local-sign-in').show();
+          $('#local-reg').hide();
+        });
+      });
+    </script>
+    
+    <a data-toggle="collapse" href="#local-reg" id="reg" class="" role="button"><section class="container">
+  <button data-hover="Enter the Battleground!" style="background-color: rgba(216, 147, 83, 0.582)"><div>&emsp;&emsp;&emsp;&emsp;Sign Up&emsp;&emsp;&emsp;&emsp;</div></button>
+</section></a>
+<br>
+  <form id="local-sign-in" class="collapse" action="/login" method="post">
+    <div>
+       
+      
+        <input type="email" id="mail" name="username" placeholder="Email Id"/ required>
+    </div>
+    <div>
+        <input type="password" placeholder="Password" name="password"/ required>
+    </div>
+    <div>
+      <section class="container">
+  <button data-hover="Fire in hole!"  style="background-color: rgba(216, 147, 83, 0.582)"><div>&emsp;&emsp;Login&emsp;&emsp;</div></button>
+</section></a>
+    </div>
+  </form>
+  <form id="local-reg" class="collapse" action="/local-reg" method="post">
+    <div>
+        <input type="email" id="mail1" name="username" placeholder="Email Id"/ required>
+    </div>
+    <script>
+      var email = document.getElementById("mail");
+email.addEventListener("input", function (event) {
+  if (email.validity.typeMismatch) {
+    email.setCustomValidity("I expect an e-mail, darling!");
+  } else {
+    email.setCustomValidity("");
+  }
+});
+    </script>
+    <script>
+      var email = document.getElementById("mail1");
+email.addEventListener("input", function (event) {
+  if (email.validity.typeMismatch) {
+    email.setCustomValidity("I expect an e-mail, darling!");
+  } else {
+    email.setCustomValidity("");
+  }
+});
+    </script>
+    <div>
+       
+        <input type="password" name="password" id="password" placeholder="Password"/ >
+    </div>
+    <div>
+        
+        <input type="password" name="cpassword" id="confirm_password" placeholder="Confirm Password"/ >
+        <span id='message'></span>
+    </div><br>                
+    <script type="text/javascript">
+      $('#password, #confirm_password').on('keyup', function () {
+  if ($('#password').val() == $('#confirm_password').val()) {
+    $('#message').html('<br>Matching').css('color', 'green');
+  } else 
+    $('#message').html('<br>Not Matching').css('color', 'red');
+});
+    </script>
+    <script type="text/javascript">
+    function Validate() {
+        var password = document.getElementById("password").value;
+        var confirmPassword = document.getElementById("confirm_password").value;
+        if (password != confirmPassword) {
+            alert("Passwords do not match.");
+            return false;
+        }
+        return true;
+    }
+</script>
+    <section class="container">
+  <button data-hover="Enter the Battleground!" onclick="return Validate()" type="submit" style="background-color: rgba(216, 147, 83, 0.582)"><div>&emsp;&emsp;&emsp;&emsp;Sign Up&emsp;&emsp;&emsp;&emsp;</div></button>
+        
+    </section>
+  </form>
+<a href="/auth/google"><button type="button" style=" width:330px;font-size:20px;font-color:white; height:50px;" class="btn btn-danger"><b>Login With Google</b></button></a>
+      </div>
+    </div>                                                          
+    </div>
+    <script>
+  $('.box-container').click(function() {
+  $(this).addClass('active');
+  $('.plane').remove();
+  $('.form').delay( 1000 ).fadeIn( 700 );
+  $('.form input').delay( 1000 ).fadeIn( 700 );
+  $('.button').delay( 1000 ).fadeIn( 700 );
+}); </script>
+    </body>
+    </html>
